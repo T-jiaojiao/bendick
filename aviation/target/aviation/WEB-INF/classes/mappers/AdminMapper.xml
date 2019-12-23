@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xr.ava.dao.AdminMapper">
+    <select id="dengLu" parameterType="Admin" resultType="Admin">
+        select * from f_admin
+        where username=#{username} and `password`=#{password};
+    </select>
+
+    <select id="queryAdminandRoleName" resultMap="adminandrole">
+         select a.aid,a.username,a.aname,a.age,a.sex,a.tel,a.qq,s.Dpt_Name,r.rname,a.add_time,a.state
+          from f_admin a,f_admin_role r,s_dpt_info s
+          where a.role_id=r.rid and a.dept_id=s.did
+    </select>
+
+    <resultMap id="adminandrole" type="Map">
+        <result property="aid" column="aid"></result>
+        <result property="username" column="username"></result>
+        <result property="aname" column="aname"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+        <result property="tel" column="tel"></result>
+        <result property="qq" column="qq"></result>
+        <result property="Dpt_name" column="Dpt_name"></result>
+        <result property="rname" column="rname"></result>
+        <result property="add_time" column="add_time"></result>
+        <result property="state" column="state"></result>
+    </resultMap>
+
+    <select id="findIDAdminRM" parameterType="int" resultMap="adminandrole">
+        select a.aid,a.username,a.aname,a.age,a.sex,a.tel,a.qq,r.rname,a.add_time,a.state
+        from f_admin a,f_admin_role r
+        where a.role_id=r.rid and a.aid=#{aid}
+    </select>
+</mapper>

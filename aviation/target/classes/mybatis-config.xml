@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 日志开启 -->
+        <setting name="logImpl" value="LOG4J2"/>
+        <!-- 二级缓存开启 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 禁用懒加载 -->
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <setting name="aggressiveLazyLoading" value="true"/>
+    </settings>
+
+    <!--设置别名-->
+    <typeAliases>
+        <package name="com.xr.ava.model"></package>
+    </typeAliases>
+
+    <!--分页配置，一定要在配置环境上面-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+        </plugin>
+    </plugins>
+
+</configuration>
